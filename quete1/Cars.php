@@ -8,9 +8,11 @@ class Cars extends Vehicle {
         'electric',
     ];
 // CONSTRUCTOR
+
     public function __construct(protected string $color = '', protected int $currentSpeed=0, 
                                 protected int $nbSeats=5, protected int $nbWheels=4,
-                                protected string $energy='', protected int $energyLevel=100)
+                                protected string $energy='', protected int $energyLevel=100,
+                                protected bool $hasParkBrake) 
         {
         $this->color = $color;
         $this->currentSpeed = $currentSpeed;
@@ -18,6 +20,7 @@ class Cars extends Vehicle {
         $this->nbWheels = $nbWheels;
         $this->setEnergy($energy);
         $this->energyLevel = $energyLevel;
+        $this->hasParkBrake = $hasParkBrake;
         }
 
 // GETTERS && SETTERS
@@ -64,7 +67,41 @@ class Cars extends Vehicle {
         $sentence .= "<br/><br/> I'm stopped !";
         return $sentence;
         }
+
+    public function setParkBrake(bool $hasParkBrake): void
+    {
+        $this->hasParkBrake = $hasParkBrake;
     }
+
+    public function start(): string
+    {
+        if ($this->hasParkBrake === true) {
+            throw new Exception("Park brake is on, you can't start the car !");
+        }
+        try {
+            if ($this->hasParkBrake) {
+                throw new Exception("The car is stopped");
+            }
+            if ($this->energyLevel <= 0) {
+                throw new Exception("The car is out of fuel");
+            }
+            if ($this->currentSpeed > 0) {
+                throw new Exception("The car is already started");
+            }
+            $this->currentSpeed = 15;
+            $this->energyLevel--;
+            return "The car is started";
+        } catch (Exception $e) {
+            if (isset($e)) {
+                $this->setParkBrake('');
+            }
+            return $e->getMessage();
+        } finally {
+            return "Ma voiture roule comme un donut";
+        }
+
+    }
+}
     
     
     

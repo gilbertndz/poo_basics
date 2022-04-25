@@ -26,7 +26,7 @@ echo '<br/> <br/>';
 var_dump($tornado);
 echo '<br/> <br/>'; 
         
-$car1 = new Cars('red', 0, 5, 4, 'fuel',);
+$car1 = new Cars('red', 0, 5, 4, 'fuel', 100, false);
 var_dump($car1);
 echo '<br/><br/>';
 
@@ -39,7 +39,7 @@ echo '<br/><br/>';
 echo $car1->move();
 echo '<br/><br/>';
 
-$car2 = new Cars('green', 0, 4, 4, 'electric', 100);
+$car2 = new Cars('green', 0, 4, 4, 'electric', 100, false);
 var_dump($car2);
 echo '<br/><br/>';
 echo $car2->move();
@@ -63,24 +63,8 @@ echo '<br/><br/>';
 echo $truck1->unloadTruck(0);
 echo '<br/><br/>';
 
-/*
+echo $car1->start();
+echo '<br/><br/>';
 
-$i=1;
-while ($cars1->getEnergyLevel() > 0) {
-      if ($cars1->getEnergyLevel()===0){
-          echo $bike->brake();
-          echo '💀 No more '.$cars1->getEnergy().' ! The car cannot move';
-          exit();
-      }
-   }
-   else {
-       $heracles->fight($lionDeNemee);
-       echo '<p>'.
-       $heracles->getName().' 🗡️ 🦁 '.$lionDeNemee->getName().' 💙🦁 '.$lionDeNemee->getName().' :'.$lionDeNemee->getLife().'<br/>';
-       $lionDeNemee->fight($heracles);
-       echo '🦁'.$lionDeNemee->getName().' 🗡️ 🧔🏽'.$heracles->getName().' 💙️🧔🏽 '.$heracles->getName().' :'.$heracles->getLife().
-           '<br/>Round #'.$i.'</p>';
-       $i++;
-   } */
 ?>
 
