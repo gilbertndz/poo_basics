@@ -1,7 +1,7 @@
 <?php
 
 require_once 'Vehicle.php';
-class Cars extends Vehicle {
+class Cars extends Vehicle  implements LightableInterface{
 
     public const ALLOWED_ENERGIES = [
         'fuel',
@@ -101,10 +101,27 @@ class Cars extends Vehicle {
         }
 
     }
-}
     
-    
-    
-    
+    public function switchOn(bool $light): bool
+    {
+        if ($light === true) {
+            echo '<br/> 💡 The light is on';
+            return true;
+        } else {
+            echo '<br/> 💡 The light is off';
+            return false;
+        }
+    }
+    public function switchOff(bool $light): bool
+    {
+        if ($light === false) {
+            echo '<br/> 💡 The light is off';
+            return false;
+        } else {
+            echo '<br/> 💡 The light is on';
+            return true;
+        }
+    }
+}    
     
     ?>
